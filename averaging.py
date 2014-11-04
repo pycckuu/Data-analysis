@@ -20,32 +20,24 @@ ut = np.fft.fft(u).T
 # re-sampling of the signal and averaging / 30
 noise = 20
 ave = 0
-sampling_count = 30
-for i in xrange(1,sampling_count):
+sampling_count = 30  # how many times to re-sample the noise and average the noise
+for i in xrange(1, sampling_count):
     utn = ut + noise * (np.random.randn(1, n - 1)[0] + 1j * np.random.randn(1, n - 1)[0])
-    un = np.fft.ifft(utn)
-    ave +=utn
-utn/=sampling_count
+    ave += utn
 
-ave = abs(np.fft.fftshift(ave))/sampling_count
-print ave
+# utn/=sampling_count
 
-# plt.subplot(2, 1, 1)
-# plt.plot(t, u, 'r')
-# plt.plot(t, abs(un), 'k')
-# plt.plot(t,0*t+0.5)
-# plt.plot(t,un,'m')
-# plt.plot(t,abs(unf),'g')
-# plt.xlim(-15, 15)
-# plt.subplot(2, 1, 2)
-plt.plot(ks, abs(np.fft.fftshift(ut)), 'r')
-plt.plot(ks, ave, 'k')
+ave = abs(np.fft.fftshift(ave)) / sampling_count
 
-# plt.plot(ks, abs(np.fft.fftshift(utn)), 'k')
-# plt.plot(ks, abs(np.fft.fftshift(utn)) / max(abs(np.fft.fftshift(utn))),'m')
-# plt.plot(ks, abs(np.fft.fftshift(filt))/max(abs(np.fft.fftshift(filt))),'b')
-# plt.plot(ks, abs(np.fft.fftshift(utnf))/max(abs(np.fft.fftshift(utnf))),'g')
-# plt.xlim(-25, 25)
+# Original signal in red
+plt.plot(ks, abs(np.fft.fftshift(ut)), 'r', label='original signal')
+
+# Signal with noise
+plt.plot(ks, abs(np.fft.fftshift(utn)), 'c', label='signal with noise')
+
+# re-sampled over and over again (30 times) and averaged signal with noise in black
+plt.plot(ks, ave, 'b', label='averaged signal')
+plt.legend(loc='upper right', shadow=True)
 
 
 plt.show()

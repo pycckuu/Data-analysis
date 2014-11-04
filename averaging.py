@@ -18,9 +18,9 @@ ut = np.fft.fft(u).T
 
 # white noise
 # re-sampling of the signal and averaging / 30
-noise = 20
+noise = 60
 ave = 0
-sampling_count = 30  # how many times to re-sample the noise and average the noise
+sampling_count = 30  # how many times to re-sample the signal and average the noise
 for i in xrange(1, sampling_count):
     utn = ut + noise * (np.random.randn(1, n - 1)[0] + 1j * np.random.randn(1, n - 1)[0])
     ave += utn

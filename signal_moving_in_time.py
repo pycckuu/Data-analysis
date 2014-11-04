@@ -3,7 +3,6 @@ import numpy as np
 from itertools import chain
 import matplotlib.pyplot as plt
 
-
 T = 30  # time
 n = 512  # points
 t2 = np.linspace(-T / 2, T / 2, n + 1)  # [-15,15] 512 points

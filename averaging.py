@@ -1,3 +1,5 @@
+# Convergence to signal through repeated sampling
+
 from __future__ import division  # normal division
 import numpy as np
 from itertools import chain
